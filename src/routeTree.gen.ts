@@ -10,11 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as NewRouteImport } from './routes/new'
 import { Route as PopularRouteImport } from './routes/popular'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as FreeAiIndexRouteImport } from './routes/free-ai.index'
 import { Route as FreeAiTypeRouteImport } from './routes/free-ai.$type'
@@ -28,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesRoute = CategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -36,6 +45,11 @@ const CategoriesRoute = CategoriesRouteImport.update({
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FavoritesRoute = FavoritesRouteImport.update({
@@ -51,6 +65,16 @@ const NewRoute = NewRouteImport.update({
 const PopularRoute = PopularRouteImport.update({
   id: '/popular',
   path: '/popular',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
@@ -91,11 +115,15 @@ const ToolsSlugRoute = ToolsSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/categories': typeof CategoriesRoute
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
   '/favorites': typeof FavoritesRoute
   '/new': typeof NewRoute
   '/popular': typeof PopularRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/category/$slug': typeof CategorySlugRoute
   '/free-ai/$type': typeof FreeAiTypeRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -106,11 +134,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/categories': typeof CategoriesRoute
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
   '/favorites': typeof FavoritesRoute
   '/new': typeof NewRoute
   '/popular': typeof PopularRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/category/$slug': typeof CategorySlugRoute
   '/free-ai/$type': typeof FreeAiTypeRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -122,11 +154,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/categories': typeof CategoriesRoute
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
   '/favorites': typeof FavoritesRoute
   '/new': typeof NewRoute
   '/popular': typeof PopularRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/category/$slug': typeof CategorySlugRoute
   '/free-ai/$type': typeof FreeAiTypeRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -139,11 +175,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/categories'
     | '/compare'
+    | '/contact'
     | '/favorites'
     | '/new'
     | '/popular'
+    | '/privacy'
+    | '/terms'
     | '/category/$slug'
     | '/free-ai/$type'
     | '/guides/$slug'
@@ -154,11 +194,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/categories'
     | '/compare'
+    | '/contact'
     | '/favorites'
     | '/new'
     | '/popular'
+    | '/privacy'
+    | '/terms'
     | '/category/$slug'
     | '/free-ai/$type'
     | '/guides/$slug'
@@ -169,11 +213,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/categories'
     | '/compare'
+    | '/contact'
     | '/favorites'
     | '/new'
     | '/popular'
+    | '/privacy'
+    | '/terms'
     | '/category/$slug'
     | '/free-ai/$type'
     | '/guides/$slug'
@@ -185,11 +233,15 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CategoriesRoute: typeof CategoriesRoute
   CompareRoute: typeof CompareRoute
+  ContactRoute: typeof ContactRoute
   FavoritesRoute: typeof FavoritesRoute
   NewRoute: typeof NewRoute
   PopularRoute: typeof PopularRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   CategorySlugRoute: typeof CategorySlugRoute
   FreeAiTypeRoute: typeof FreeAiTypeRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
@@ -208,6 +260,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories': {
       id: '/categories'
       path: '/categories'
@@ -220,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/compare'
       fullPath: '/compare'
       preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/favorites': {
@@ -241,6 +307,20 @@ declare module '@tanstack/react-router' {
       path: '/popular'
       fullPath: '/popular'
       preLoaderRoute: typeof PopularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/category/$slug': {
@@ -297,11 +377,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CategoriesRoute: CategoriesRoute,
   CompareRoute: CompareRoute,
+  ContactRoute: ContactRoute,
   FavoritesRoute: FavoritesRoute,
   NewRoute: NewRoute,
   PopularRoute: PopularRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   CategorySlugRoute: CategorySlugRoute,
   FreeAiTypeRoute: FreeAiTypeRoute,
   GuidesSlugRoute: GuidesSlugRoute,
