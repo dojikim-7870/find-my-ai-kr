@@ -4,6 +4,7 @@ import { DifficultyBadge, KoreanBadge, PricingBadge } from "@/components/site/ba
 import { ToolCard } from "@/components/site/tool-card";
 import { categoryName } from "@/data/categories";
 import { getTool, tools } from "@/data/tools";
+import type { AITool } from "@/data/types";
 
 export const Route = createFileRoute("/tools/$slug")({
   loader: ({ params }) => {
@@ -31,7 +32,7 @@ export const Route = createFileRoute("/tools/$slug")({
 });
 
 function ToolDetail() {
-  const { tool } = Route.useLoaderData();
+  const { tool } = Route.useLoaderData() as { tool: AITool };
   const alternatives = tool.alternatives.map((s) => tools.find((t) => t.slug === s)).filter(Boolean);
 
   return (

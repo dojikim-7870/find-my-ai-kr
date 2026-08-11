@@ -20,13 +20,13 @@ const str = (v: unknown, fallback: string) => (typeof v === "string" && v ? v : 
 
 export const Route = createFileRoute("/tools/")({
   validateSearch: (search: Record<string, unknown>): ToolsSearch => ({
-    q: str(search.q, ""),
-    use: str(search.use, "all"),
-    type: str(search.type, "all"),
-    price: str(search.price, "all"),
-    ko: str(search.ko, "all"),
-    level: str(search.level, "all"),
-    sort: str(search.sort, "popularity") as SortKey,
+    q: str(search['q'], ""),
+    use: str(search['use'], "all"),
+    type: str(search['type'], "all"),
+    price: str(search['price'], "all"),
+    ko: str(search['ko'], "all"),
+    level: str(search['level'], "all"),
+    sort: str(search['sort'], "popularity") as SortKey,
   }),
   head: () => ({
     meta: [
@@ -61,13 +61,13 @@ function ToolsPage() {
   const search = Route.useSearch();
   const results = useMemo(() => {
     const filters: Filters = {
-      useCase: search.use,
-      aiType: search.type,
-      pricing: search.price,
-      korean: search.ko,
-      difficulty: search.level,
+      useCase: search['use'],
+      aiType: search['type'],
+      pricing: search['price'],
+      korean: search['ko'],
+      difficulty: search['level'],
     };
-    return searchTools(search.q, filters, search.sort);
+    return searchTools(search['q'], filters, search.sort);
   }, [search]);
 
   return (
@@ -85,7 +85,7 @@ function ToolsPage() {
             <Link
               key={k}
               to="/tools"
-              search={(prev) => ({ ...prev, q: k })}
+              search={(prev: ToolsSearch) => ({ ...prev, q: k })}
               className="rounded-full border bg-card px-3 py-1.5 text-xs font-medium transition-colors hover:border-brand hover:text-brand"
             >
               {k}
@@ -112,7 +112,7 @@ function ToolsPage() {
               <Link
                 key={opt.value}
                 to="/tools"
-                search={(prev) => ({ ...prev, sort: opt.value })}
+                search={(prev: ToolsSearch) => ({ ...prev, sort: opt.value })}
                 className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
                   search.sort === opt.value ? "bg-brand text-brand-foreground" : "text-muted-foreground hover:bg-accent"
                 }`}
@@ -164,7 +164,7 @@ function FilterRow({
           <Link
             key={opt.value}
             to="/tools"
-            search={(prev) => ({ ...prev, [paramKey]: opt.value })}
+            search={(prev: ToolsSearch) => ({ ...prev, [paramKey]: opt.value })}
             className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
               current === opt.value
                 ? "border-brand bg-brand text-brand-foreground"
