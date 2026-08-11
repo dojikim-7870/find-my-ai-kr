@@ -10,33 +10,245 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as NewRouteImport } from './routes/new'
+import { Route as PopularRouteImport } from './routes/popular'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as FreeAiIndexRouteImport } from './routes/free-ai.index'
+import { Route as FreeAiTypeRouteImport } from './routes/free-ai.$type'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
+import { Route as ToolsIndexRouteImport } from './routes/tools.index'
+import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesRoute = CategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewRoute = NewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PopularRoute = PopularRouteImport.update({
+  id: '/popular',
+  path: '/popular',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeAiIndexRoute = FreeAiIndexRouteImport.update({
+  id: '/free-ai/',
+  path: '/free-ai/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeAiTypeRoute = FreeAiTypeRouteImport.update({
+  id: '/free-ai/$type',
+  path: '/free-ai/$type',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/tools/',
+  path: '/tools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsSlugRoute = ToolsSlugRouteImport.update({
+  id: '/tools/$slug',
+  path: '/tools/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/categories': typeof CategoriesRoute
+  '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/favorites': typeof FavoritesRoute
+  '/new': typeof NewRoute
+  '/popular': typeof PopularRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/free-ai/$type': typeof FreeAiTypeRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/free-ai/': typeof FreeAiIndexRoute
+  '/guides/': typeof GuidesIndexRoute
+  '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/categories': typeof CategoriesRoute
+  '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/favorites': typeof FavoritesRoute
+  '/new': typeof NewRoute
+  '/popular': typeof PopularRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/free-ai/$type': typeof FreeAiTypeRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/free-ai': typeof FreeAiIndexRoute
+  '/guides': typeof GuidesIndexRoute
+  '/tools': typeof ToolsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/categories': typeof CategoriesRoute
+  '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/favorites': typeof FavoritesRoute
+  '/new': typeof NewRoute
+  '/popular': typeof PopularRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/free-ai/$type': typeof FreeAiTypeRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/free-ai/': typeof FreeAiIndexRoute
+  '/guides/': typeof GuidesIndexRoute
+  '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/categories'
+    | '/compare'
+    | '/contact'
+    | '/favorites'
+    | '/new'
+    | '/popular'
+    | '/privacy'
+    | '/terms'
+    | '/category/$slug'
+    | '/free-ai/$type'
+    | '/guides/$slug'
+    | '/tools/$slug'
+    | '/free-ai/'
+    | '/guides/'
+    | '/tools/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/categories'
+    | '/compare'
+    | '/contact'
+    | '/favorites'
+    | '/new'
+    | '/popular'
+    | '/privacy'
+    | '/terms'
+    | '/category/$slug'
+    | '/free-ai/$type'
+    | '/guides/$slug'
+    | '/tools/$slug'
+    | '/free-ai'
+    | '/guides'
+    | '/tools'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/categories'
+    | '/compare'
+    | '/contact'
+    | '/favorites'
+    | '/new'
+    | '/popular'
+    | '/privacy'
+    | '/terms'
+    | '/category/$slug'
+    | '/free-ai/$type'
+    | '/guides/$slug'
+    | '/tools/$slug'
+    | '/free-ai/'
+    | '/guides/'
+    | '/tools/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CategoriesRoute: typeof CategoriesRoute
+  CompareRoute: typeof CompareRoute
+  ContactRoute: typeof ContactRoute
+  FavoritesRoute: typeof FavoritesRoute
+  NewRoute: typeof NewRoute
+  PopularRoute: typeof PopularRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
+  CategorySlugRoute: typeof CategorySlugRoute
+  FreeAiTypeRoute: typeof FreeAiTypeRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
+  ToolsSlugRoute: typeof ToolsSlugRoute
+  FreeAiIndexRoute: typeof FreeAiIndexRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +260,140 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories': {
+      id: '/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new': {
+      id: '/new'
+      path: '/new'
+      fullPath: '/new'
+      preLoaderRoute: typeof NewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/popular': {
+      id: '/popular'
+      path: '/popular'
+      fullPath: '/popular'
+      preLoaderRoute: typeof PopularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-ai/': {
+      id: '/free-ai/'
+      path: '/free-ai'
+      fullPath: '/free-ai/'
+      preLoaderRoute: typeof FreeAiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-ai/$type': {
+      id: '/free-ai/$type'
+      path: '/free-ai/$type'
+      fullPath: '/free-ai/$type'
+      preLoaderRoute: typeof FreeAiTypeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/': {
+      id: '/tools/'
+      path: '/tools'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/$slug': {
+      id: '/tools/$slug'
+      path: '/tools/$slug'
+      fullPath: '/tools/$slug'
+      preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CategoriesRoute: CategoriesRoute,
+  CompareRoute: CompareRoute,
+  ContactRoute: ContactRoute,
+  FavoritesRoute: FavoritesRoute,
+  NewRoute: NewRoute,
+  PopularRoute: PopularRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
+  CategorySlugRoute: CategorySlugRoute,
+  FreeAiTypeRoute: FreeAiTypeRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
+  ToolsSlugRoute: ToolsSlugRoute,
+  FreeAiIndexRoute: FreeAiIndexRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
