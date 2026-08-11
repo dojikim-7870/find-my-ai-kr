@@ -108,9 +108,9 @@ export function tokenize(query: string): string[] {
     if (expanded) expanded.forEach((t) => tokens.add(t.toLowerCase()));
   }
   // 구문 단위 동의어 (예: "상품 설명")
-  for (const key of Object.keys(SYNONYMS)) {
+  for (const [key, values] of Object.entries(SYNONYMS)) {
     if (key.includes(" ") && q.includes(key)) {
-      SYNONYMS[key].forEach((t) => tokens.add(t.toLowerCase()));
+      values.forEach((t) => tokens.add(t.toLowerCase()));
     }
   }
   return [...tokens];
