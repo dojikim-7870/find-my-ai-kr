@@ -11,9 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as NewRouteImport } from './routes/new'
 import { Route as PopularRouteImport } from './routes/popular'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as FreeAiIndexRouteImport } from './routes/free-ai.index'
+import { Route as FreeAiTypeRouteImport } from './routes/free-ai.$type'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as ToolsIndexRouteImport } from './routes/tools.index'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 
@@ -25,6 +31,16 @@ const IndexRoute = IndexRouteImport.update({
 const CategoriesRoute = CategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewRoute = NewRouteImport.update({
@@ -42,6 +58,26 @@ const CategorySlugRoute = CategorySlugRouteImport.update({
   path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FreeAiIndexRoute = FreeAiIndexRouteImport.update({
+  id: '/free-ai/',
+  path: '/free-ai/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeAiTypeRoute = FreeAiTypeRouteImport.update({
+  id: '/free-ai/$type',
+  path: '/free-ai/$type',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolsIndexRoute = ToolsIndexRouteImport.update({
   id: '/tools/',
   path: '/tools/',
@@ -56,29 +92,47 @@ const ToolsSlugRoute = ToolsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/compare': typeof CompareRoute
+  '/favorites': typeof FavoritesRoute
   '/new': typeof NewRoute
   '/popular': typeof PopularRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/free-ai/$type': typeof FreeAiTypeRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/free-ai/': typeof FreeAiIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/compare': typeof CompareRoute
+  '/favorites': typeof FavoritesRoute
   '/new': typeof NewRoute
   '/popular': typeof PopularRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/free-ai/$type': typeof FreeAiTypeRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/free-ai': typeof FreeAiIndexRoute
+  '/guides': typeof GuidesIndexRoute
   '/tools': typeof ToolsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
+  '/compare': typeof CompareRoute
+  '/favorites': typeof FavoritesRoute
   '/new': typeof NewRoute
   '/popular': typeof PopularRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/free-ai/$type': typeof FreeAiTypeRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/free-ai/': typeof FreeAiIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRouteTypes {
@@ -86,38 +140,62 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/categories'
+    | '/compare'
+    | '/favorites'
     | '/new'
     | '/popular'
     | '/category/$slug'
+    | '/free-ai/$type'
+    | '/guides/$slug'
     | '/tools/$slug'
+    | '/free-ai/'
+    | '/guides/'
     | '/tools/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/categories'
+    | '/compare'
+    | '/favorites'
     | '/new'
     | '/popular'
     | '/category/$slug'
+    | '/free-ai/$type'
+    | '/guides/$slug'
     | '/tools/$slug'
+    | '/free-ai'
+    | '/guides'
     | '/tools'
   id:
     | '__root__'
     | '/'
     | '/categories'
+    | '/compare'
+    | '/favorites'
     | '/new'
     | '/popular'
     | '/category/$slug'
+    | '/free-ai/$type'
+    | '/guides/$slug'
     | '/tools/$slug'
+    | '/free-ai/'
+    | '/guides/'
     | '/tools/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
+  CompareRoute: typeof CompareRoute
+  FavoritesRoute: typeof FavoritesRoute
   NewRoute: typeof NewRoute
   PopularRoute: typeof PopularRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  FreeAiTypeRoute: typeof FreeAiTypeRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
   ToolsSlugRoute: typeof ToolsSlugRoute
+  FreeAiIndexRoute: typeof FreeAiIndexRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   ToolsIndexRoute: typeof ToolsIndexRoute
 }
 
@@ -135,6 +213,20 @@ declare module '@tanstack/react-router' {
       path: '/categories'
       fullPath: '/categories'
       preLoaderRoute: typeof CategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/new': {
@@ -158,6 +250,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/free-ai/': {
+      id: '/free-ai/'
+      path: '/free-ai'
+      fullPath: '/free-ai/'
+      preLoaderRoute: typeof FreeAiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-ai/$type': {
+      id: '/free-ai/$type'
+      path: '/free-ai/$type'
+      fullPath: '/free-ai/$type'
+      preLoaderRoute: typeof FreeAiTypeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tools/': {
       id: '/tools/'
       path: '/tools'
@@ -178,10 +298,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
+  CompareRoute: CompareRoute,
+  FavoritesRoute: FavoritesRoute,
   NewRoute: NewRoute,
   PopularRoute: PopularRoute,
   CategorySlugRoute: CategorySlugRoute,
+  FreeAiTypeRoute: FreeAiTypeRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
   ToolsSlugRoute: ToolsSlugRoute,
+  FreeAiIndexRoute: FreeAiIndexRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   ToolsIndexRoute: ToolsIndexRoute,
 }
 export const routeTree = rootRouteImport
