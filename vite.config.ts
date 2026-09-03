@@ -12,4 +12,12 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // GitHub Pages 정적 배포를 위한 Nitro / Prerender 설정 추가
+  nitro: {
+    preset: "github-pages",
+    prerender: {
+      routes: ["/"],
+      crawlLinks: true,
+    },
+  },
 });
