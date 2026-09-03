@@ -1,4 +1,4 @@
-name: Deploy Vite site to Pages
+name: Deploy TanStack Start to GitHub Pages
 
 on:
   push:
@@ -37,9 +37,10 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          # TanStack Start / Vinxi 정적 빌드 출력 경로
+          path: './.output/public'
+        uses: actions/upload-pages-artifact@v3
 
       - name: Deploy to GitHub Pages
         id: deployment
