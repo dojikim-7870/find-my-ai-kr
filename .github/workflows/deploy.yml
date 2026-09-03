@@ -30,33 +30,23 @@ jobs:
       - name: Install Dependencies
         run: bun install
 
-      - name: Build Project
-        run: bun run build
-
-      - name: Debug Output Directory
-        run: |
-          echo "=== Directory List ==="
-          ls -la
-          echo "=== .output List ==="
-          ls -la .output || true
-          echo "=== dist List ==="
-          ls -la dist || true
+      - name: Build Project (Static Pre-render)
+        run: NITRO_PRESET=static bun run build
 
       - name: Prepare Deployment Directory
         run: |
-          # 배포 전용 폴더 생성
           mkdir -p public_deploy
           
-          # 생성된 빌드 결과물을 public_deploy 폴더로 수집
-          if [ -d "./dist" ]; then
-            cp -r ./dist/* ./public_deploy/
-          elif [ -d "./.output/public" ]; then
+          # 정적 빌드 결과물 수집
+          if [ -d "./.output/public" ]; then
             cp -r ./.output/public/* ./public_deploy/
+          elif [ -d "./dist" ]; then
+            cp -r ./dist/* ./public_deploy/
           elif [ -d "./.output" ]; then
             cp -r ./.output/* ./public_deploy/
           fi
 
-          # CNAME 및 404 fallback 설정
+          # CNAME 및 404 라우팅 처리
           echo "aifind.kr" > ./public_deploy/CNAME
           if [ -f "./public_deploy/index.html" ]; then
             cp ./public_deploy/index.html ./public_deploy/404.html
