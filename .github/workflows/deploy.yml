@@ -33,22 +33,23 @@ jobs:
       - name: Build Project
         run: bun run build
 
-      - name: Determine Output Path & Prepare Spa
+      - name: Determine Output Path & Prepare Files
         run: |
           if [ -d "./dist" ]; then
-            echo "BUILD_PATH=./dist" >> $GITHUB_ENV
             TARGET="./dist"
           elif [ -d "./.output/public" ]; then
-            echo "BUILD_PATH=./.output/public" >> $GITHUB_ENV
             TARGET="./.output/public"
           elif [ -d "./.output" ]; then
-            echo "BUILD_PATH=./.output" >> $GITHUB_ENV
             TARGET="./.output"
           else
-            echo "BUILD_PATH=." >> $GITHUB_ENV
             TARGET="."
           fi
-          # GitHub Pages SPA 404 방지용 index.html 복사
+          echo "BUILD_PATH=$TARGET" >> $GITHUB_ENV
+
+          # GitHub Pages CNAME 유지
+          echo "aifind.kr" > "$TARGET/CNAME"
+
+          # SPA 404 방지
           if [ -f "$TARGET/index.html" ]; then
             cp "$TARGET/index.html" "$TARGET/404.html" || true
           fi
