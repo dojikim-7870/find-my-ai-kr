@@ -33,25 +33,33 @@ jobs:
       - name: Build Project
         run: bun run build
 
-      - name: Determine Output Path & Prepare Files
+      - name: Debug Output Directory
         run: |
+          echo "=== Directory List ==="
+          ls -la
+          echo "=== .output List ==="
+          ls -la .output || true
+          echo "=== dist List ==="
+          ls -la dist || true
+
+      - name: Prepare Deployment Directory
+        run: |
+          # 배포 전용 폴더 생성
+          mkdir -p public_deploy
+          
+          # 생성된 빌드 결과물을 public_deploy 폴더로 수집
           if [ -d "./dist" ]; then
-            TARGET="./dist"
+            cp -r ./dist/* ./public_deploy/
           elif [ -d "./.output/public" ]; then
-            TARGET="./.output/public"
+            cp -r ./.output/public/* ./public_deploy/
           elif [ -d "./.output" ]; then
-            TARGET="./.output"
-          else
-            TARGET="."
+            cp -r ./.output/* ./public_deploy/
           fi
-          echo "BUILD_PATH=$TARGET" >> $GITHUB_ENV
 
-          # GitHub Pages CNAME 유지
-          echo "aifind.kr" > "$TARGET/CNAME"
-
-          # SPA 404 방지
-          if [ -f "$TARGET/index.html" ]; then
-            cp "$TARGET/index.html" "$TARGET/404.html" || true
+          # CNAME 및 404 fallback 설정
+          echo "aifind.kr" > ./public_deploy/CNAME
+          if [ -f "./public_deploy/index.html" ]; then
+            cp ./public_deploy/index.html ./public_deploy/404.html
           fi
 
       - name: Setup Pages
@@ -60,7 +68,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.BUILD_PATH }}
+          path: './public_deploy'
 
       - name: Deploy to GitHub Pages
         id: deployment
