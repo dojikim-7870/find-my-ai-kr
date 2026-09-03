@@ -8,16 +8,15 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
   },
-  // GitHub Pages 정적 배포를 위한 Nitro / Prerender 설정 추가
-  nitro: {
-    preset: "github-pages",
-    prerender: {
-      routes: ["/"],
-      crawlLinks: true,
+  vite: {
+    // Nitro 엔진에 static/prerender 옵션 전달
+    nitro: {
+      preset: "static",
+      prerender: {
+        routes: ["/"],
+      },
     },
   },
 });
