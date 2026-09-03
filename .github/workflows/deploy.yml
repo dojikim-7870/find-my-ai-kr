@@ -1,4 +1,4 @@
-name: Deploy TanStack Start to GitHub Pages
+name: Deploy TanStack Start site to Pages
 
 on:
   push:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,14 +33,33 @@ jobs:
       - name: Build Project
         run: bun run build
 
+      - name: Determine Output Path & Prepare Spa
+        run: |
+          if [ -d "./dist" ]; then
+            echo "BUILD_PATH=./dist" >> $GITHUB_ENV
+            TARGET="./dist"
+          elif [ -d "./.output/public" ]; then
+            echo "BUILD_PATH=./.output/public" >> $GITHUB_ENV
+            TARGET="./.output/public"
+          elif [ -d "./.output" ]; then
+            echo "BUILD_PATH=./.output" >> $GITHUB_ENV
+            TARGET="./.output"
+          else
+            echo "BUILD_PATH=." >> $GITHUB_ENV
+            TARGET="."
+          fi
+          # GitHub Pages SPA 404 방지용 index.html 복사
+          if [ -f "$TARGET/index.html" ]; then
+            cp "$TARGET/index.html" "$TARGET/404.html" || true
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload Artifact
-        with:
-          # TanStack Start / Vinxi 정적 빌드 출력 경로
-          path: './.output/public'
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.BUILD_PATH }}
 
       - name: Deploy to GitHub Pages
         id: deployment
