@@ -30,23 +30,25 @@ jobs:
       - name: Install Dependencies
         run: bun install
 
-      - name: Build Project (Static Pre-render)
-        run: NITRO_PRESET=static bun run build
+      - name: Build Project
+        run: bun run build
 
       - name: Prepare Deployment Directory
         run: |
           mkdir -p public_deploy
           
-          # 정적 빌드 결과물 수집
+          # TanStack Start / Vinxi 빌드 결과물 중 정적 에셋 폴더 탐색 및 복사
           if [ -d "./.output/public" ]; then
             cp -r ./.output/public/* ./public_deploy/
+          elif [ -d "./.output/server/public" ]; then
+            cp -r ./.output/server/public/* ./public_deploy/
+          elif [ -d "./dist/client" ]; then
+            cp -r ./dist/client/* ./public_deploy/
           elif [ -d "./dist" ]; then
             cp -r ./dist/* ./public_deploy/
-          elif [ -d "./.output" ]; then
-            cp -r ./.output/* ./public_deploy/
           fi
 
-          # CNAME 및 404 라우팅 처리
+          # CNAME 및 SPA 404 라우팅 처리
           echo "aifind.kr" > ./public_deploy/CNAME
           if [ -f "./public_deploy/index.html" ]; then
             cp ./public_deploy/index.html ./public_deploy/404.html
