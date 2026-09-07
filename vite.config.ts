@@ -10,4 +10,8 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  // GitHub Pages 정적 호스팅을 위해 Nitro 타겟을 static으로 변경합니다.
+  nitro: {
+    preset: "static",
+  },
 });
