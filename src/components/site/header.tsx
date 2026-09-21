@@ -25,7 +25,7 @@ export function Header() {
             A
           </span>
           <span className="truncate text-lg font-extrabold tracking-tight">
-            AIAtlas<span className="text-brand">.kr</span>
+            AIfind<span className="text-brand">.kr</span>
           </span>
         </Link>
 
