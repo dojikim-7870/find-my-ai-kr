@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
         content:
           "글쓰기·이미지·영상·코딩·업무 자동화까지, 한국 사용자에게 유용한 AI 도구를 검색하고 비교하세요. 무료 여부와 한국어 지원을 한눈에.",
       },
-      { property: "og:title", content: "AIAtlas.kr | 나에게 맞는 AI를 쉽게 찾다" },
+      { property: "og:title", content: "aifind.kr | 나에게 맞는 AI를 쉽게 찾다" },
       {
         property: "og:description",
         content: "활용 목적으로 찾는 한국형 AI 도구 검색·비교 플랫폼.",
@@ -212,10 +212,10 @@ function Home() {
             <div>
               <h2 className="flex items-center gap-2 text-xl font-extrabold sm:text-2xl">
                 <Compass className="size-5 text-brand" />
-                AIAtlas 소개
+                AIfind 소개
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                AIAtlas.kr은 “AI가 뭔지는 알겠는데 어떤 걸 써야 하지?”라는 질문에서 출발했습니다. AI 도구를
+                AIfind.kr은 “AI가 뭔지는 알겠는데 어떤 걸 써야 하지?”라는 질문에서 출발했습니다. AI 도구를
                 이름이 아니라 <strong className="text-foreground">하려는 일</strong> 기준으로 찾을 수 있도록
                 정리하고, 무료 사용 여부와 한국어 지원 수준을 함께 보여드립니다.
               </p>
