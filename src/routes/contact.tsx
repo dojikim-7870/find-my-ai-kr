@@ -1,70 +1,96 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { toast } from "sonner";
+import { useState, useEffect } from "react";
 import { PageHeader } from "@/components/site/section";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "문의하기 | aifind.kr" },
-      { name: "description", content: "AI 도구 등록 요청, 정보 수정 제안, 제휴 문의를 남겨주세요." },
-      { property: "og:title", content: "문의하기 | aifind.kr" },
-      { property: "og:description", content: "aifind.kr에 문의를 남겨주세요." },
+      { title: "문의하기 | AIFind.kr" },
+      {
+        name: "description",
+        content: "AI 도구 등록 요청, 정보 수정 제안, 제휴 및 광고 문의를 남겨주세요.",
+      },
+      { property: "og:title", content: "문의하기 | AIFind.kr" },
+      {
+        property: "og:description",
+        content: "AIFind.kr에 문의를 남겨주세요.",
+      },
     ],
   }),
   component: ContactPage,
 });
 
 function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", type: "AI 도구 등록 요청", message: "" });
+  const [success, setSuccess] = useState(false);
 
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!form.email.includes("@") || form.message.trim().length < 5) {
-      toast.error("이메일과 문의 내용을 확인해 주세요.");
-      return;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("success") === "true") {
+        setSuccess(true);
+      }
     }
-    setForm({ name: "", email: "", type: "AI 도구 등록 요청", message: "" });
-    toast.success("문의가 접수되었습니다. 접수 처리 기능은 준비 중입니다.");
-  }
+  }, []);
 
   return (
     <>
       <PageHeader
         eyebrow="문의하기"
         title="문의하기"
-        description="AI 도구 등록 요청, 잘못된 정보 제보, 제휴 제안을 남겨주세요. 접수 기능은 준비 중이며 현재는 화면만 제공됩니다."
+        description="AI 도구 등록 요청, 잘못된 정보 제보, 제휴 및 광고 문의를 남겨주세요. 입력하신 내용은 AIFind 운영자에게 이메일로 전송됩니다."
       />
-      <div className="mx-auto max-w-2xl px-4 py-10">
-        <form
-  action="https://formsubmit.co/pcdb7777@gmail.com"
-  method="POST"
-  className="space-y-4 rounded-2xl border bg-card p-6 shadow-card"
->
-          <input type="hidden" name="_subject" value="AIFind 문의가 도착했습니다." />
-  <input type="hidden" name="_captcha" value="false" />
-  <input type="hidden" name="_template" value="table" />
-  <input type="hidden" name="_next" value="https://aifind.kr/contact?success=true" />
 
+      <div className="mx-auto max-w-2xl px-4 py-10">
+        {success && (
+          <div className="mb-6 rounded-xl border border-green-300 bg-green-50 p-4 text-sm text-green-700">
+            ✅ 문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변드리겠습니다.
+          </div>
+        )}
+
+        <form
+          action="https://formsubmit.co/pcdb7777@gmail.com"
+          method="POST"
+          className="space-y-4 rounded-2xl border bg-card p-6 shadow-card"
+        >
+          {/* FormSubmit 설정 */}
+          <input
+            type="hidden"
+            name="_subject"
+            value="AIFind.kr 문의가 도착했습니다."
+          />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://aifind.kr/contact?success=true"
+          />
+
+          {/* 이름 */}
           <Field label="이름 (선택)">
             <input
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              name="name"
+              type="text"
               className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:border-brand"
+              placeholder="이름을 입력하세요."
             />
           </Field>
+
+          {/* 이메일 */}
           <Field label="이메일">
             <input
+              name="email"
               type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              required
               className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:border-brand"
+              placeholder="답변 받을 이메일 주소"
             />
           </Field>
+
+          {/* 문의 유형 */}
           <Field label="문의 유형">
             <select
-              value={form.type}
-              onChange={(e) => setForm({ ...form, type: e.target.value })}
+              name="type"
               className="w-full rounded-xl border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
             >
               <option>AI 도구 등록 요청</option>
@@ -73,14 +99,18 @@ function ContactPage() {
               <option>기타</option>
             </select>
           </Field>
-          <Field label="내용">
+
+          {/* 문의 내용 */}
+          <Field label="문의 내용">
             <textarea
+              name="message"
               rows={6}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              required
               className="w-full rounded-xl border px-4 py-3 text-sm outline-none focus:border-brand"
+              placeholder="문의 내용을 자세히 작성해 주세요."
             />
           </Field>
+
           <button
             type="submit"
             className="w-full rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-brand-foreground transition-opacity hover:opacity-90"
@@ -93,10 +123,18 @@ function ContactPage() {
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-bold text-muted-foreground">{label}</span>
+      <span className="mb-1.5 block text-xs font-bold text-muted-foreground">
+        {label}
+      </span>
       {children}
     </label>
   );
