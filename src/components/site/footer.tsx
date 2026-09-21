@@ -20,7 +20,7 @@ const columns = [
     ],
   },
   {
-    title: "AIAtlas",
+    title: "AIfind",
     links: [
       { to: "/about", label: "서비스 소개" },
       { to: "/contact", label: "문의하기" },
@@ -41,11 +41,11 @@ export function Footer() {
                 A
               </span>
               <span className="text-lg font-extrabold tracking-tight">
-                AIAtlas<span className="text-brand">.kr</span>
+                AIfind<span className="text-brand">.kr</span>
               </span>
             </div>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              한국인을 위한 AI 도구 검색·비교·활용 플랫폼. 나에게 맞는 AI를 쉽게 찾아보세요.
+              AI사용자를 위한 AI 도구 검색·비교·활용 플랫폼. 나에게 맞는 AI를 쉽게 찾아보세요.
             </p>
           </div>
 
@@ -70,10 +70,10 @@ export function Footer() {
 
         <div className="mt-10 border-t pt-6 text-xs leading-relaxed text-muted-foreground">
           <p>
-            AIAtlas.kr에 정리된 정보는 각 서비스의 공개된 내용을 바탕으로 작성한 참고 자료이며, 요금제·기능·한국어
+            AIfind.kr에 정리된 정보는 각 서비스의 공개된 내용을 바탕으로 작성한 참고 자료이며, 요금제·기능·한국어
             지원 수준은 변경될 수 있습니다. 최신 정보는 각 서비스 공식 사이트에서 확인해 주세요.
           </p>
-          <p className="mt-2">© {new Date().getFullYear()} AIAtlas.kr</p>
+          <p className="mt-2">© {new Date().getFullYear()} AIfind.kr</p>
         </div>
       </div>
     </footer>
