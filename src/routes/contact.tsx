@@ -6,10 +6,10 @@ import { PageHeader } from "@/components/site/section";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "문의하기 | AIAtlas.kr" },
+      { title: "문의하기 | aifind.kr" },
       { name: "description", content: "AI 도구 등록 요청, 정보 수정 제안, 제휴 문의를 남겨주세요." },
-      { property: "og:title", content: "문의하기 | AIAtlas.kr" },
-      { property: "og:description", content: "AIAtlas.kr에 문의를 남겨주세요." },
+      { property: "og:title", content: "문의하기 | aifind.kr" },
+      { property: "og:description", content: "aifind.kr에 문의를 남겨주세요." },
     ],
   }),
   component: ContactPage,
