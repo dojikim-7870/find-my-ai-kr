@@ -36,7 +36,16 @@ function ContactPage() {
         description="AI 도구 등록 요청, 잘못된 정보 제보, 제휴 제안을 남겨주세요. 접수 기능은 준비 중이며 현재는 화면만 제공됩니다."
       />
       <div className="mx-auto max-w-2xl px-4 py-10">
-        <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border bg-card p-6 shadow-card">
+        <form
+  action="https://formsubmit.co/pcdb7777@gmail.com"
+  method="POST"
+  className="space-y-4 rounded-2xl border bg-card p-6 shadow-card"
+>
+          <input type="hidden" name="_subject" value="AIFind 문의가 도착했습니다." />
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_next" value="https://aifind.kr/contact?success=true" />
+
           <Field label="이름 (선택)">
             <input
               value={form.name}
